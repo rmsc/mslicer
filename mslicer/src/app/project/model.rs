@@ -39,6 +39,8 @@ pub struct Model {
     pub file_path: Option<PathBuf>,
     pub parent_model_id: Option<u32>,
 
+    pub relative_exposure: f32,
+
     buffers: Option<RenderedMeshBuffers>,
 }
 
@@ -84,10 +86,12 @@ impl Model {
 
             color: LinearRgb::repeat(1.0),
             hidden: false,
-
             ui: ModelUi::default(),
             file_path: None,
             parent_model_id: None,
+
+            relative_exposure: 1.0,
+
             buffers: None,
         }
     }
@@ -220,8 +224,12 @@ impl Clone for Model {
             color: self.color,
             hidden: self.hidden,
             ui: self.ui.clone(),
+
             file_path: self.file_path.clone(),
             parent_model_id: self.parent_model_id,
+
+            relative_exposure: self.relative_exposure,
+
             buffers: None,
         }
     }
